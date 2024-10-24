@@ -4,6 +4,7 @@ import Chart from 'chart.js';
 
 @Component({
     selector: 'dashboard-cmp',
+    standalone: true,
     moduleId: module.id,
     templateUrl: 'dashboard.component.html'
 })

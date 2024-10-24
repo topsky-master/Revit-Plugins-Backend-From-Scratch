@@ -35,11 +35,8 @@ export class ApisService {
 		return this.currentUserSubject.value;
 	}
 
-	login(credentials: {
-    email: string;
-    password: string;
-  }) {
-		return this.http.post<User>(`user/login`, { email: credentials.email, password: credentials.password })
+	login(email, password) {
+		return this.http.post<User>(`user/login`, { email, password})
 			.pipe(map(user => {
 				// store user details and jwt token in local storage to keep user logged in between page refreshes
 				localStorage.setItem('user', JSON.stringify(user));

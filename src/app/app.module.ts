@@ -8,7 +8,6 @@ import { ToastrModule } from "ngx-toastr";
 // project import
 import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
-import { SharedModule } from './theme/shared/shared.module';
 
 import { provideHttpClient, withInterceptors } from "@angular/common/http";
 import { JwtService } from "./pages/authentication/services/jwt.service";
@@ -26,8 +25,7 @@ export function initAuth(jwtService: JwtService, userService: UserService) {
   declarations: [AppComponent],
   imports: [
     BrowserModule, 
-    AppRoutingModule, 
-    SharedModule, 
+    AppRoutingModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
   ],
