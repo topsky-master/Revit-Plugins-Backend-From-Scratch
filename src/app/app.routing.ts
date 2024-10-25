@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 // Project import
-import { AdminComponent } from './theme/layouts/admin-layout/admin-layout.component';
+import { AdminComponent } from './layouts/admin-layout/admin-layout.component';
 
-const routes: Routes = [
+export const AppRoutes: Routes = [
   {
 		path: '',
 		redirectTo: 'login',
@@ -18,7 +18,19 @@ const routes: Routes = [
       {
         path: 'dashboard',
         loadComponent: () => import('./pages/dashboard/dashboard.component').then((c) => c.DashboardComponent)
-      }
+      },
+      {
+        path: 'maps',
+        loadComponent: () => import('./pages/maps/maps.component').then((c) => c.MapsComponent)
+      },
+      {
+        path: 'notifications',
+        loadComponent: () => import('./pages/notifications/notifications.component').then((c) => c.NotificationsComponent)
+      },
+      {
+        path: 'product',
+        loadChildren: () => import('./pages/product/list/list.module').then((c) => c.ProductListModule)
+      },
     ]
   },
   {
@@ -39,9 +51,3 @@ const routes: Routes = [
 		redirectTo: 'dashboard'
 	}
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule {}

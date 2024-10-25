@@ -5,6 +5,7 @@ declare var google: any;
 @Component({
 	moduleId: module.id,
 	selector: 'maps-cmp',
+	standalone: true,
 	templateUrl: 'maps.component.html'
 })
 

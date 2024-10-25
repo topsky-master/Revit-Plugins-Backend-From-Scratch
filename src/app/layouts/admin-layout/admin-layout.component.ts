@@ -4,10 +4,10 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 // Project import
-import { SidebarModule } from './shared/sidebar/sidebar.module';
-import { FixedPluginModule } from './shared/fixedplugin/fixedplugin.module';
-import { NavbarModule } from './shared/navbar/navbar.module';
-import { FooterModule } from './shared/footer/footer.module';
+import { SidebarModule } from 'src/app/shared/sidebar/sidebar.module';
+import { FixedPluginModule } from 'src/app/shared/fixedplugin/fixedplugin.module';
+import { NavbarModule } from 'src/app/shared/navbar/navbar.module';
+import { FooterModule } from 'src/app/shared/footer/footer.module';
 
 @Component({
   selector: 'app-admin',

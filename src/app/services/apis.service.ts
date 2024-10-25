@@ -7,7 +7,6 @@ import { map, distinctUntilChanged, tap, shareReplay } from "rxjs/operators";
 import { Router } from '@angular/router';
 import { UtilsService } from './utils.service';
 import { JwtService } from "./jwt.service";
-import json5 from "json5";
 
 @Injectable({
 	providedIn: 'root'
@@ -38,21 +37,10 @@ export class ApisService {
 	login(email, password) {
 		return this.http.post<User>(`user/login`, { email, password})
 			.pipe(map(user => {
-				// store user details and jwt token in local storage to keep user logged in between page refreshes
-				localStorage.setItem('user', JSON.stringify(user));
+				this.setAuth(user);
 				this.currentUserSubject.next(user);
 				return user;
 			}));
-  }
-
-  register(credentials: {
-    username: string;
-    email: string;
-    password: string;
-  }): Observable<{ user: User }> {
-    return this.http
-      .post<{ user: User }>("user", { username: credentials.username, email: credentials.email, password: credentials.password })
-      .pipe(tap(({ user }) => this.setAuth(user)));
   }
 
 	public logout() {
@@ -81,7 +69,7 @@ export class ApisService {
   }
 	
   setAuth(user: User): void {
-		console.log(`user => ${user}`);
+		console.log(`user => ${JSON.stringify(user)}`);
 
 		// store user details and jwt token in local storage to keep user logged in between page refreshes
 		localStorage.setItem('user', JSON.stringify(user));
