@@ -51,7 +51,7 @@ export class ApisService {
 	}
 
   getCurrentUser(): Observable<{ user: User }> {
-    return this.http.get<{ user: User }>("/user").pipe(
+    return this.http.get<{ user: User }>("user").pipe(
       tap({
         next: ({ user }) => this.setAuth(user),
         error: () => this.purgeAuth(),
@@ -70,11 +70,12 @@ export class ApisService {
 	
   setAuth(user: User): void {
 		console.log(`user => ${JSON.stringify(user)}`);
-
-		// store user details and jwt token in local storage to keep user logged in between page refreshes
-		localStorage.setItem('user', JSON.stringify(user));
-    this.jwtService.saveToken(user.token);
-    this.currentUserSubject.next(user);
+		if(user) {
+			// store user details and jwt token in local storage to keep user logged in between page refreshes
+			localStorage.setItem('user', JSON.stringify(user));
+			this.jwtService.saveToken(user.token);
+			this.currentUserSubject.next(user);
+		}
   }
 
   purgeAuth(): void {

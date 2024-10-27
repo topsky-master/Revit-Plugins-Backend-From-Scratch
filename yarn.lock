@@ -1851,6 +1851,11 @@
     "@types/qs" "*"
     "@types/serve-static" "*"
 
+"@types/googlemaps@^3.39.14":
+  version "3.39.14"
+  resolved "https://registry.npmjs.org/@types/googlemaps/-/googlemaps-3.39.14.tgz"
+  integrity sha512-MB8zwqarykWxCayoWcQAeKWpFTgKlCz7Z+PpFeEimAe4keQ1o1Q3Y/5r5Td52gd164QmTUHGxGlKkmUEVrdbHA==
+
 "@types/http-errors@*":
   version "2.0.4"
   resolved "https://registry.npmjs.org/@types/http-errors/-/http-errors-2.0.4.tgz"

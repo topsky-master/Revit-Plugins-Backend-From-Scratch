@@ -17,6 +17,7 @@ import { errorInterceptor } from "./helpers/error.interceptor";
 import { tokenInterceptor } from "./helpers/token.interceptor";
 import { ApisService } from "./services/apis.service";
 import { JwtService } from "./services/jwt.service";
+import { NgxSpinnerModule } from "ngx-spinner";
 
 export function initAuth(jwtService: JwtService, apiService: ApisService) {
   return () => (jwtService.getToken() ? apiService.getCurrentUser() : "");
@@ -31,6 +32,7 @@ export function initAuth(jwtService: JwtService, apiService: ApisService) {
 			useHash: true
 		}),
     ToastrModule.forRoot(),
+    NgxSpinnerModule.forRoot()
   ],
   bootstrap: [AppComponent],
   providers: [
