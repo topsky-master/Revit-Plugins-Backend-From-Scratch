@@ -16,12 +16,7 @@ import { apiInterceptor } from "./helpers/api.interceptor";
 import { errorInterceptor } from "./helpers/error.interceptor";
 import { tokenInterceptor } from "./helpers/token.interceptor";
 import { ApisService } from "./services/apis.service";
-import { JwtService } from "./services/jwt.service";
 import { NgxSpinnerModule } from "ngx-spinner";
-
-export function initAuth(jwtService: JwtService, apiService: ApisService) {
-  return () => (jwtService.getToken() ? apiService.getCurrentUser() : "");
-}
 
 @NgModule({
   declarations: [AppComponent],
@@ -37,12 +32,6 @@ export function initAuth(jwtService: JwtService, apiService: ApisService) {
   bootstrap: [AppComponent],
   providers: [
     provideHttpClient( withInterceptors([apiInterceptor, tokenInterceptor, errorInterceptor])),
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initAuth,
-      deps: [JwtService, ApisService],
-      multi: true,
-    },
   ]
   
 })

@@ -6,7 +6,6 @@ import { User } from '../models/user.model';
 import { map, distinctUntilChanged, tap, shareReplay } from "rxjs/operators";
 import { Router } from '@angular/router';
 import { UtilsService } from './utils.service';
-import { JwtService } from "./jwt.service";
 
 @Injectable({
 	providedIn: 'root'
@@ -24,7 +23,6 @@ export class ApisService {
 	constructor(
 		private http: HttpClient,
 		private router: Router,
-    private readonly jwtService: JwtService,
 		private util: UtilsService
 	) {
 
@@ -73,13 +71,11 @@ export class ApisService {
 		if(user) {
 			// store user details and jwt token in local storage to keep user logged in between page refreshes
 			localStorage.setItem('user', JSON.stringify(user));
-			this.jwtService.saveToken(user.token);
 			this.currentUserSubject.next(user);
 		}
   }
 
   purgeAuth(): void {
-    this.jwtService.destroyToken();
     this.currentUserSubject.next(null);
   }
 

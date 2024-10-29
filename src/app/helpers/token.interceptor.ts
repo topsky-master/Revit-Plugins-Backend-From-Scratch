@@ -1,16 +1,17 @@
 import { inject } from "@angular/core";
 import { HttpInterceptorFn } from "@angular/common/http";
-import { JwtService } from "../services/jwt.service";
+import { ApisService } from "../services/apis.service";
 import { environment } from 'src/environments/environment';
 
 export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
-  const token = inject(JwtService).getToken();
-
+  // add auth header with jwt if user is logged in and request is to the api url
+  const user = inject(ApisService).userValue;
+  const isLoggedIn = user && user.token;
   const isApiUrl = req.url.startsWith(environment.apiEndpoint);
-  if (token && isApiUrl) {
+  if (isLoggedIn && isApiUrl) {
     req = req.clone({
       setHeaders: {
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${user.token}`
       }
     });
   }
