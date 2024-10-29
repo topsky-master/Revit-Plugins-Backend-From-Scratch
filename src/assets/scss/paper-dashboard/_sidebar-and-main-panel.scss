@@ -292,6 +292,7 @@
 
 
 .main-panel{
+    overflow-x: hidden;
     position: relative;
     float: right;
     width: $sidebar-width;

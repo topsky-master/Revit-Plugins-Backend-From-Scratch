@@ -30,6 +30,7 @@ export class DashboardComponent implements OnInit{
           datasets: [{
               borderColor: "#6bd098",
               backgroundColor: "#6bd098",
+              fill: true,
               pointRadius: 0,
               pointHoverRadius: 0,
               borderWidth: 3,
@@ -38,6 +39,7 @@ export class DashboardComponent implements OnInit{
             {
               borderColor: "#f17e5d",
               backgroundColor: "#f17e5d",
+              fill: true,
               pointRadius: 0,
               pointHoverRadius: 0,
               borderWidth: 3,
@@ -46,6 +48,7 @@ export class DashboardComponent implements OnInit{
             {
               borderColor: "#fcc468",
               backgroundColor: "#fcc468",
+              fill: true,
               pointRadius: 0,
               pointHoverRadius: 0,
               borderWidth: 3,
@@ -54,22 +57,19 @@ export class DashboardComponent implements OnInit{
           ]
         },
         options: {
-          datasets:{
-            bar: {
-              barPercentage: 1.6
-            }
-          },
+          responsive: true,
+          maintainAspectRatio: false,
           plugins: {
             legend: {
               display: false
             }, 
             tooltip: {
               enabled: false
-            },
+            }
           },
-
           scales: {
             x: {
+              
               border: {
                 display: false
               },
@@ -101,7 +101,6 @@ export class DashboardComponent implements OnInit{
         }
       });
 
-
       this.canvas = document.getElementById("chartEmail");
       this.ctx = this.canvas.getContext("2d");
       this.chartEmail = new Chart(this.ctx, {
@@ -117,11 +116,13 @@ export class DashboardComponent implements OnInit{
               '#ef8157'
             ],
             borderWidth: 0,
-            data: [342, 480, 530, 120]
+            data: [342, 480, 530, 120],
           }],
         },
 
         options: {
+          responsive: true,
+          maintainAspectRatio: false,
           plugins: {
             legend: {
               display: false
@@ -136,11 +137,7 @@ export class DashboardComponent implements OnInit{
               hoverRadius: 0
             },
           },
-          datasets:{
-            bar: {
-              barPercentage: 1.6
-            }
-          },
+          
           scales: {
             x: {
               border: {
@@ -170,8 +167,6 @@ export class DashboardComponent implements OnInit{
         }
       });
 
-      var speedCanvas = document.getElementById("speedChart");
-
       var dataFirst = {
         data: [0, 19, 15, 20, 30, 40, 40, 50, 25, 30, 50, 70],
         fill: false,
@@ -199,11 +194,26 @@ export class DashboardComponent implements OnInit{
         datasets: [dataFirst, dataSecond]
       };
 
-      var chartOptions = {
-        legend: {
-          display: false,
-          position: 'top'
+      this.canvas = document.getElementById("speedChart");
+      this.ctx = this.canvas.getContext("2d");
+
+      var lineChart = new Chart(this.ctx, {
+        type: 'line',
+        data: speedData,
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          hover : {
+            mode: 'index',
+            intersect: false
+          },
+          plugins: {
+            legend: {
+              display: false,
+              position: 'top'
+            },
+          }
         }
-      };
+      });
     }
 }

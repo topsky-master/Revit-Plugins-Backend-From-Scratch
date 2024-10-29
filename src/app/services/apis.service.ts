@@ -14,7 +14,7 @@ import { JwtService } from "./jwt.service";
 export class ApisService {
 	apiEndpoint: string = '';
 	
-  private currentUserSubject = new BehaviorSubject<User | null>(null);
+  private currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
   public currentUser = this.currentUserSubject
     .asObservable()
     .pipe(distinctUntilChanged());

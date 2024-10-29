@@ -22,19 +22,14 @@ export const AppRoutes: Routes = [
 			}],
       canActivate: [AuthGuard]
   },
-  {
-    path: '',
-    children: [
-      {
-        path: 'login',
-        loadChildren: () => import('./pages/user/login/login.module').then(m => m.LoginModule)
-      },
-      {
-        path: 'register',
-        loadChildren: () => import('./pages/user/register/register.module').then(m => m.RegisterModule)
-      }
-    ]
-  },
+	{
+		path: 'login',
+		loadChildren: () => import('./pages/user/login/login.module').then(m => m.LoginModule)
+	},
+	{
+		path: 'register',
+		loadChildren: () => import('./pages/user/register/register.module').then(m => m.RegisterModule)
+	},
 	{
 		path: '**',
 		redirectTo: 'dashboard'
