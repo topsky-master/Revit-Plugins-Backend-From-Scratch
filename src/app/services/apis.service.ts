@@ -69,7 +69,7 @@ export class ApisService {
   }
 	
   setAuth(user: User): void {
-		console.log(`user => ${JSON.stringify(user)}`);
+		// console.log(`user => ${JSON.stringify(user)}`);
 		if(user) {
 			// store user details and jwt token in local storage to keep user logged in between page refreshes
 			localStorage.setItem('user', JSON.stringify(user));

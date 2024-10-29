@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import Chart from 'chart.js';
+import { Chart } from 'chart.js/auto';
 
 
 @Component({
     selector: 'dashboard-cmp',
-    standalone: true,
     moduleId: module.id,
     templateUrl: 'dashboard.component.html'
 })
@@ -55,44 +54,49 @@ export class DashboardComponent implements OnInit{
           ]
         },
         options: {
-          legend: {
-            display: false
+          datasets:{
+            bar: {
+              barPercentage: 1.6
+            }
           },
-
-          tooltips: {
-            enabled: false
+          plugins: {
+            legend: {
+              display: false
+            }, 
+            tooltip: {
+              enabled: false
+            },
           },
 
           scales: {
-            yAxes: [{
-
-              ticks: {
-                fontColor: "#9f9f9f",
-                beginAtZero: false,
-                maxTicksLimit: 5,
-                //padding: 20
+            x: {
+              border: {
+                display: false
               },
-              gridLines: {
-                drawBorder: false,
-                zeroLineColor: "#ccc",
-                color: 'rgba(255,255,255,0.05)'
-              }
-
-            }],
-
-            xAxes: [{
-              barPercentage: 1.6,
-              gridLines: {
-                drawBorder: false,
+              
+              grid: {
                 color: 'rgba(255,255,255,0.1)',
-                zeroLineColor: "transparent",
                 display: false,
               },
               ticks: {
                 padding: 20,
-                fontColor: "#9f9f9f"
+                color: "#9f9f9f"
               }
-            }]
+            },
+            y: {
+              beginAtZero: false,
+              ticks: {
+                color: "#9f9f9f",
+                maxTicksLimit: 5,
+                //padding: 20
+              },
+              border: {
+                display: false
+              },
+              grid: {
+                color: 'rgba(255,255,255,0.05)'
+              }
+            },
           },
         }
       });
@@ -106,8 +110,6 @@ export class DashboardComponent implements OnInit{
           labels: [1, 2, 3],
           datasets: [{
             label: "Emails",
-            pointRadius: 0,
-            pointHoverRadius: 0,
             backgroundColor: [
               '#e3e3e3',
               '#4acccd',
@@ -116,51 +118,55 @@ export class DashboardComponent implements OnInit{
             ],
             borderWidth: 0,
             data: [342, 480, 530, 120]
-          }]
+          }],
         },
 
         options: {
-
-          legend: {
-            display: false
+          plugins: {
+            legend: {
+              display: false
+            },
+            tooltip: {
+              enabled: false
+            },
           },
-
-          pieceLabel: {
-            render: 'percentage',
-            fontColor: ['white'],
-            precision: 2
+          elements: {
+            point: {
+              radius: 0,
+              hoverRadius: 0
+            },
           },
-
-          tooltips: {
-            enabled: false
+          datasets:{
+            bar: {
+              barPercentage: 1.6
+            }
           },
-
           scales: {
-            yAxes: [{
-
-              ticks: {
-                display: false
+            x: {
+              border: {
+                display: false,
+                color: "transparent"
               },
-              gridLines: {
-                drawBorder: false,
-                zeroLineColor: "transparent",
-                color: 'rgba(255,255,255,0.05)'
-              }
-
-            }],
-
-            xAxes: [{
-              barPercentage: 1.6,
-              gridLines: {
-                drawBorder: false,
+              grid: {
                 color: 'rgba(255,255,255,0.1)',
-                zeroLineColor: "transparent"
               },
               ticks: {
                 display: false,
               }
-            }]
-          },
+            },
+            y: {
+              border: {
+                display: false,
+                color: "transparent"
+              },  
+              ticks: {
+                display: false
+              },
+              grid: {
+                color: 'rgba(255,255,255,0.05)'
+              }
+            }
+          }
         }
       });
 
@@ -199,12 +205,5 @@ export class DashboardComponent implements OnInit{
           position: 'top'
         }
       };
-
-      var lineChart = new Chart(speedCanvas, {
-        type: 'line',
-        hover: false,
-        data: speedData,
-        options: chartOptions
-      });
     }
 }
